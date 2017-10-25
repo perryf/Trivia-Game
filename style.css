@@ -24,22 +24,21 @@ button {
   float: left;
 }
 .game {
-  /*display: none;*/
+  display: none;
 }
 .question {
   font-size: 40px;
   color: #07557f;
 }
 .choices {
-  /*margin: 40px,280px;*/
-  margin-left: 280px;
-  margin-right: 280px;
-  padding: 60px, 20px;
+  margin: 10px auto;
+  display: inline-block;
   font-size: 20px;
-
 }
 .choices:hover {
   background-color: #2C8D73;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .rightOrWrong{
   display: none;
@@ -50,3 +49,19 @@ button {
 .ending {
   font-size: 40px;
 }
+.health-bar-box {
+  display: inline-flex;
+  justify-content: flex-start;
+  max-width: 600px;
+  width: 600px;
+  height: 80px;
+  border: 2px solid white;
+  border-color: white;
+  padding: 20px,1000px;
+  /*background: red;*/
+}
+.health-bar {
+  height: 80px;
+  width: 600px;
+  background: red;
+  }

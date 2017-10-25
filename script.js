@@ -18,23 +18,25 @@ $(document).ready(function(){
   var currentQuestion
 
   function startGame () {
-    var totalCorrect = 0
-    var totalWrong = 0
-    var allChoicesHtml = ""
-    var currentIndex = 0
-    var currentQuestion
-    const trivia = [
-      {
-        question:'something here',
-        choices:['first choice here', 'second choice here', 'third choice here', 'fourth choice here'],
-        answer:'first choice here'
-      },
-      {
-        question:'test for question 2',
-        choices:['test choice 1', 'test choice 2'],
-        answer:'test choice 2'
-      }
-    ]
+    $('.health-bar').width(600)
+    $('.end').hide()
+     totalCorrect = 0
+     totalWrong = 0
+     allChoicesHtml = ""
+     currentIndex = 0
+     currentQuestion
+    //  trivia = [
+    //   {
+    //     question:'something here',
+    //     choices:['first choice here', 'second choice here', 'third choice here', 'fourth choice here'],
+    //     answer:'first choice here'
+    //   },
+    //   {
+    //     question:'test for question 2',
+    //     choices:['test choice 1', 'test choice 2'],
+    //     answer:'test choice 2'
+    //   }
+    // ]
     $('.start-menu').hide()
     selectQuestion()
 
@@ -61,7 +63,7 @@ $(document).ready(function(){
   function displayChoices() {
     let choicesText = currentQuestion.choices
     for (i = 0; i < choicesText.length; i++){
-      choicesHtml = "<p class='choices' data-choice='" + i + "'>" + choicesText[i] + "</p>"
+      choicesHtml = "<p class='choices' data-choice='" + i + "'>" + choicesText[i] + "</p><br>"
       allChoicesHtml += choicesHtml
       // $('.game').append(choicesHtml)
     }
@@ -92,6 +94,11 @@ $(document).ready(function(){
   }
   function correctAnswer(){
     $('.game').hide()
+    $('.health-bar').width(function(){
+      newWidth = $('.health-bar').width()
+      newWidth -= 100
+      $('.health-bar').width(newWidth)
+    })
     correctImageHtml = "<img src='check.jpg' alt = 'Correct'>"
     $('.rightOrWrong').html(correctImageHtml)
     $('.rightOrWrong').show()
@@ -121,19 +128,12 @@ $(document).ready(function(){
     }
   }
   function endGame() {
-    endScreenHtml = "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> "
-    // <button type='button' id = 'reset-button'> Reset</button>
+    endScreenHtml = "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Reset</button>"
 
     $('.end').html(endScreenHtml)
     $('.end').show()
-  //  $('#reset-button').click(startGame)
+    $('#reset-button').click(startGame)
   }
-    // setTimeout for 3000
-    // callback fn
-    //   1. hide rightOrWrong
-    //   2. Check currentIndex and questions.length
-    //     A. call displayQuestion
-    //     B. End Game
   var choicesHtml
   $('#start-button').click(startGame)
   $('#reset-button').click(startGame)
