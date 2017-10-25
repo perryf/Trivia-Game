@@ -41,3 +41,12 @@ button {
 .choices:hover {
   background-color: #2C8D73;
 }
+.rightOrWrong{
+  display: none;
+}
+.end {
+  display: none;
+}
+.ending {
+  font-size: 40px;
+}
