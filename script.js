@@ -200,12 +200,12 @@ $(document).ready(function(){
     nextQuestion()
   }
 
-  function endGameWin() {
-    $('.health-bar-box').hide()
-    endScreenWin = "<p class = 'endWin'>Congratulations you have beaten the challenge</p>"
-    $('.end').html(endScreenWin)
-    endGame()
-  }
+  // function endGameWin() {
+  //   $('.health-bar-box').hide()
+  //   endScreenWin = "<p class = 'endWin'>Congratulations you have beaten the challenge</p>"
+  //   $('.end').html(endScreenWin)
+  //   endGame()
+  // }
   function incorrectAnswer() {
     $('.game').hide()
     incorrectImageHtml = "<img src='wrong.png' alt = 'Incorrect'>"
@@ -238,8 +238,9 @@ $(document).ready(function(){
     }
   }
   function endGame() {
-    endScreenHtml = "<p class = 'bosses'> You defeated " + healthBarCounter + " bosses.  Great job!</p> <p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
-
+    endScreenHtml = "<p class = 'bosses'> You cleared " + healthBarCounter + " stage(s).  Great job!</p> <p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
+    endScreenHtml = `<p class='bosses'>You cleared ${ healthBarCounter === 1 ? 'stage' : 'stages' }.`
+    $('.health-bar-box').hide()
     $('.end').append(endScreenHtml)
     $('.end').show()
     $('#reset-button').click(startGame)
