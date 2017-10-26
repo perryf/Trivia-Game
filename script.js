@@ -1,14 +1,54 @@
 $(document).ready(function(){
   const trivia = [
     {
-      question:'something here',
-      choices:['first choice here', 'second choice here', 'third choice here', 'fourth choice here'],
-      answer:'first choice here'
+      question:'What was Lord Helmet doing privately in his room that he did not want anyone to see?',
+      choices:['He was playing with dolls', 'He was going to the bathroom', 'He was watching Spaceballs', 'He was looking at a picture of Princess Vespa'],
+      answer:'He was playing with dolls'
     },
     {
-      question:'test for question 2',
-      choices:['test choice 1', 'test choice 2'],
-      answer:'test choice 2'
+      question:'What did the alien do after it jumped out of the guys stomach at the bar?',
+      choices:['It ate everyone', 'It sang and danced','It had a drink', 'It died'],
+      answer:'It sang and danced'
+    },
+    {
+      question:'What was Pongo(a movie reviewer) going to review on tv?',
+      choices:['Rocky 500', 'Rocky 5', 'Rocky 5000', 'Rocky 50000'],
+      answer:'Rocky 5000'
+    },
+    {
+      question:'How did Pizza The Hut die?',
+      choices:['He ate himself to death', 'Birds ate him', 'People ate him', 'His cheese expired'],
+      answer:'He ate himself to death'
+    },
+    {
+      question:'What happened when Lord helmet was going to push the cancelation button?',
+      choices:['There wasnt one', 'It was out of order', 'They couldnt find it', 'It cost 5 dollars'],
+      answer:'It was out of order'
+    },
+    {
+      question:'How fast can Spaceball 1 go?',
+      choices:['Hyper Active Speed', 'Ridiculous Speed', 'Crazy Speed', 'Ludicrous Speed'],
+      answer:'Ludicrous Speed'
+    },
+    {
+      question:'What flavour of jam does LoneStar jam SpaceBall 1s radar with?',
+      choices:['Strawberry', 'Raspberry', 'Blueberry', 'Blackberry'],
+      answer:'Raspberry'
+    },
+    {
+      question:'What does Lone Starr say when the little sand people (the ones that say dink all the time) wake him up?',
+      choices:['Well this isnt Florida', 'When did we get to Disney Land?', 'We arent in Kansas anymore', 'You dont see this everyday'],
+      answer:'When did we get to Disney Land?'
+    },
+    {
+      question:'Who gets the last escape pod?',
+      choices:['The Bear', 'The Bearded Lady', 'The President', 'The Drummer'],
+      answer:'The Bear'
+    },
+    {
+      question:'What did the radar guys radar lose?',
+      choices:['buzzes, hums, bleeps', 'Its mind', 'lines, whirls, twirls', 'beeps, sweeps, creeps'],
+      answer:'beeps, sweeps, creeps'
     }
   ]
   var totalCorrect = 0
@@ -18,6 +58,7 @@ $(document).ready(function(){
   var currentQuestion
 
   function startGame () {
+    $('.health-bar-box').show()
     $('.health-bar').width(600)
     $('.end').hide()
      totalCorrect = 0
@@ -25,18 +66,7 @@ $(document).ready(function(){
      allChoicesHtml = ""
      currentIndex = 0
      currentQuestion
-    //  trivia = [
-    //   {
-    //     question:'something here',
-    //     choices:['first choice here', 'second choice here', 'third choice here', 'fourth choice here'],
-    //     answer:'first choice here'
-    //   },
-    //   {
-    //     question:'test for question 2',
-    //     choices:['test choice 1', 'test choice 2'],
-    //     answer:'test choice 2'
-    //   }
-    // ]
+
     $('.start-menu').hide()
     selectQuestion()
 
@@ -52,7 +82,7 @@ $(document).ready(function(){
   function displayQuestion() {
     let questionText = currentQuestion.question
     questionHtml = "<p class = 'question'>" + questionText + "</p>"
-    // $('.game').html(questionHtml)
+    //$('.game').html(questionHtml)
     displayChoices()
     $('.game').show()
 
@@ -75,6 +105,7 @@ $(document).ready(function(){
     $('.choices').click(function( e ){
       let choicesText = currentQuestion.choices
       let userAnswer = $(this).data("choice")
+      newWidth = $('.health-bar').width()
       parseInt(userAnswer)
       //parseInt(target)
       if (choicesText[userAnswer] === currentQuestion.answer){
@@ -98,6 +129,7 @@ $(document).ready(function(){
       newWidth = $('.health-bar').width()
       newWidth -= 100
       $('.health-bar').width(newWidth)
+      checkWin()
     })
     correctImageHtml = "<img src='check.jpg' alt = 'Correct'>"
     $('.rightOrWrong').html(correctImageHtml)
@@ -106,6 +138,17 @@ $(document).ready(function(){
     nextQuestion()
   }
 
+  function checkWin(){
+    if (newWidth == 0){
+      endGameWin()
+    }
+  }
+  function endGameWin() {
+    $('.health-bar-box').hide()
+    endScreenWin = "<p class = 'endWin'>Congratulations you have beaten the challenge</p>"
+    $('.end').html(endScreenWin)
+    endGame()
+  }
   function incorrectAnswer() {
     $('.game').hide()
     incorrectImageHtml = "<img src='wrong.png' alt = 'Incorrect'>"
@@ -120,17 +163,20 @@ $(document).ready(function(){
     $('.rightOrWrong').hide()
 
     console.log(currentIndex)
-    if (currentIndex < trivia.length){
+    if (currentIndex < trivia.length && newWidth > 0){
       selectQuestion()
+    }
+    else if (newWidth == 0){
+      endGameWin()
     }
     else {
       endGame()
     }
   }
   function endGame() {
-    endScreenHtml = "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Reset</button>"
+    endScreenHtml = "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
 
-    $('.end').html(endScreenHtml)
+    $('.end').append(endScreenHtml)
     $('.end').show()
     $('#reset-button').click(startGame)
   }

@@ -54,14 +54,18 @@ button {
   justify-content: flex-start;
   max-width: 600px;
   width: 600px;
-  height: 80px;
+  height: 60px;
   border: 2px solid white;
   border-color: white;
   padding: 20px,1000px;
   /*background: red;*/
 }
 .health-bar {
-  height: 80px;
+  height: 60px;
   width: 600px;
   background: red;
-  }
+}
+.endWin {
+  color: white;
+  font-size: 40px;
+}
