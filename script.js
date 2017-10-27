@@ -131,6 +131,7 @@ $(document).ready(function(){
   function selectQuestion () {
     $('.health-bar-box').show()
     allChoicesHtml = ""
+    // currentCategory = "spaceballs"
     currentQuestion = trivia[currentIndex]
     currentIndex++
     displayQuestion()
@@ -214,7 +215,7 @@ $(document).ready(function(){
     nextQuestion()
   }
   function nextQuestion() {
-    setTimeout(checkQuestions, 3000)
+    setTimeout(checkQuestions, 2000)
   }
   function checkQuestions() {
     $('.rightOrWrong').hide()
@@ -231,15 +232,18 @@ $(document).ready(function(){
     }
     else if (newWidth == 0 && currentIndex <= trivia.length && healthBarCounter >= 2){
       healthBarCounter++
-      setTimeout(endGame, 3000)
+      endGame()
+      //setTimeout(endGame, 2000)
     }
     else {
-      setTimeout(endGame, 3000)
+      endGame()
+      //setTimeout(endGame, 2000)
     }
   }
   function endGame() {
-    endScreenHtml = "<p class = 'bosses'> You cleared " + healthBarCounter + " stage(s).  Great job!</p> <p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
-    endScreenHtml = `<p class='bosses'>You cleared ${ healthBarCounter === 1 ? 'stage' : 'stages' }.`
+    endScreenHtml = "<p class = 'bosses'> You cleared " + healthBarCounter + " stage(s).  Great job!</p> <p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again</button>"
+    // endScreenHtml = `<p class='bosses'>You cleared ${ healthBarCounter === 1 ? '1 stage' : 'stages' }. Great job!</p>`
+    // endScreenHtml += "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
     $('.health-bar-box').hide()
     $('.end').append(endScreenHtml)
     $('.end').show()
