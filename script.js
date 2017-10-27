@@ -131,7 +131,8 @@ $(document).ready(function(){
   function selectQuestion () {
     $('.health-bar-box').show()
     allChoicesHtml = ""
-    currentQuestion = trivia[currentIndex]
+    // currentCategory = "spaceballs"
+    currentQuestion = trivia[currentCategory][currentIndex]
     currentIndex++
     displayQuestion()
   }
@@ -239,7 +240,8 @@ $(document).ready(function(){
   }
   function endGame() {
     endScreenHtml = "<p class = 'bosses'> You cleared " + healthBarCounter + " stage(s).  Great job!</p> <p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
-    endScreenHtml = `<p class='bosses'>You cleared ${ healthBarCounter === 1 ? 'stage' : 'stages' }.`
+    // endScreenHtml = `<p class='bosses'>You cleared ${ healthBarCounter === 1 ? '1 stage' : 'stages' }. Great job!</p>`
+    // endScreenHtml += "<p class='ending'> You answered " + totalCorrect + " questions correctly and " + totalWrong + " incorrectly </p> <button type='button' id = 'reset-button'> Try Again?</button>"
     $('.health-bar-box').hide()
     $('.end').append(endScreenHtml)
     $('.end').show()
