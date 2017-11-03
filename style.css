@@ -2,6 +2,7 @@ body {
   color: blue;
   background-color: #3D9E84;
   font-family: Helvetica, sans-serif;
+  /*Consider experimenting with more fonts like these https://fonts.google.com/*/
 }
 h1 {
   color: #07557f;
@@ -20,7 +21,8 @@ button {
   display: inline-flex;
 }
 .startMenu {
-  margin: 0,auto;
+  /*margin: 0 auto;*/
+  /*No commas in margin!  This line of code was not running because of the comma*/
   float: left;
 }
 .game {
@@ -40,6 +42,7 @@ button {
   padding-right: 10px;
   padding-left: 10px;
 }
+/*Nice use of hover here.  Consider using the `cursor` declaration as well to make it more clear what can be clicked on*/
 .rightOrWrong{
   display: none;
 }
@@ -57,7 +60,8 @@ button {
   height: 60px;
   border: 2px solid white;
   border-color: white;
-  padding: 20px,1000px;
+  /*padding: 20px 1000px;*/
+  /*No commas in padding either!*/
 }
 .health-bar {
   height: 60px;
@@ -72,3 +76,12 @@ button {
   color: white;
   font-size: 40px;
 }
+
+/*Good job going from least specific at the top of your document to most specific at the the bottom (elements, then classes, then ids)*/
+/*Make sure you run your code through a CSS validator to check for syntac bugs*/
+/*Good job using semantic names for targetting elements to make your code readable*/
+/*Page scales pretty well - good job using flexbox to achieve this.  I would adjust the margin slightly for the questions so that they don't go so far to the edge of the page*/
+/*I'd say the layout of the site is pretty good, however I'd like to see a little more attention paid to the styling.  Here are some suggestions in that regard...*/
+/*- Play around with your color palatte and font options, a lighter background might feel more natural*/
+/*- The blue for the answer choices is a little harsh*/
+/*- Maybe an image or two? (make sure you cite them!)*/

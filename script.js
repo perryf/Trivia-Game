@@ -107,6 +107,7 @@ $(document).ready(function(){
       }
     ]
   ]
+  // Questions are formatted well - consider moving these into a seperate JS file to make things more readable and more modular.
   var totalCorrect = 0
   var totalWrong = 0
   var allChoicesHtml = ""
@@ -114,6 +115,7 @@ $(document).ready(function(){
   var currentQuestion
   var healthBarCounter = 0
   var h = 0
+  // Good job declaring your global variables in one place above your functions
   function startGame () {
     $('.health-bar').width(600)
     $('.end').hide()
@@ -125,13 +127,13 @@ $(document).ready(function(){
 
     $('.start-menu').hide()
     selectQuestion()
-
   }
 
   function selectQuestion () {
     $('.health-bar-box').show()
     allChoicesHtml = ""
     // currentCategory = "spaceballs"
+    // Make sure to ditch all commented out code in your master branch
     currentQuestion = trivia[currentIndex]
     currentIndex++
     displayQuestion()
@@ -143,7 +145,6 @@ $(document).ready(function(){
     //$('.game').html(questionHtml)
     displayChoices()
     $('.game').show()
-
     // take data from `currentQuestion` and display it in the
     // DOM using jQuery
   }
@@ -169,6 +170,8 @@ $(document).ready(function(){
         $('.gameBoard').remove()
         totalCorrect++
         console.log(totalCorrect)
+        // These 3 lines above should be put in your correctAnswer function.
+        // Probably don't want console.logs in master branch assuming they are not part of the user experience
       }
       else {
         incorrectAnswer()
@@ -207,6 +210,7 @@ $(document).ready(function(){
   //   $('.end').html(endScreenWin)
   //   endGame()
   // }
+  // No commented out code in production branch!
   function incorrectAnswer() {
     $('.game').hide()
     incorrectImageHtml = "<img src='wrong.png' alt = 'Incorrect'>"
@@ -214,15 +218,16 @@ $(document).ready(function(){
     $('.rightOrWrong').show()
     nextQuestion()
   }
+  // You could combine incorrectAnswer and correctAnswer into a new function like `selectAnswer` to abstract some of the code from userSelected/ incorrectAnswer/ correctAnswers
   function nextQuestion() {
-    setTimeout(checkQuestions, 2000)
+    setTimeout(checkQuestions, 2000) // This is maybe slightly long on the time.  Consider resizing the images slightly as well
   }
   function checkQuestions() {
     $('.rightOrWrong').hide()
     if (currentIndex < trivia.length && newWidth > 0){
       selectQuestion()
     }
-  else if (newWidth == 0 && currentIndex <= trivia.length && healthBarCounter < 2){
+    else if (newWidth == 0 && currentIndex <= trivia.length && healthBarCounter < 2){
       healthBarCounter ++
       trivia.push(...bonusTrivia[h])
       h++
@@ -252,4 +257,11 @@ $(document).ready(function(){
   var choicesHtml
   $('#start-button').click(startGame)
   $('#reset-button').click(startGame)
+  // I would put these event listeners attached to the buttons at the top of the page with your global variables.
 })
+
+// Great job with the JS overall.  Code is semantically clear and functions well.
+// There is a little bit of abstraction that could be done on some of the functions to make them smaller, more well defined, and specific.
+// Beyond that, the biggest improvement in code quality would come from cleaning up and organizing.  Get rid of commented out lines, make sure nothing is redundent, and organize best you can to make everything a bit more readable and intuitive.
+// Lastly, it might be a good idea to add a little bit of humor to match the content of this app.  Or a brief storyline to explain the health bar and engage the user even more.
+// Overall great job!
